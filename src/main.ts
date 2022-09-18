@@ -55,9 +55,9 @@ function draw() {
 
 // Event Listeners
 function mousePressed() {
-  let x = 0;
+  let x = map(mouseX, 0, mouseY, 0);
 }
 
 
 // Montando p5.js en el div
-p5i({ setup, draw, mousePressed }, document.getElementById('canvas') as HTMLDivElement);
+const { map, mouseX, mouseY } = p5i({ setup, draw, mousePressed }, document.getElementById('canvas') as HTMLDivElement);
