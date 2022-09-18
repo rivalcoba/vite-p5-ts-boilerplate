@@ -4,12 +4,12 @@ import { IOptimizationResults } from './appInterfaces'
 export default {
   // Función perdida
   loss(y: number, y_hat: number) {
-    return (y_hat - y) ** 2;
+    return ((y_hat - y) ** 2) / 2.0;
   },
   // Cost Function
   cost(dataset: number[][], w0: number, w1: number) {
     let sum = dataset.reduce((previousValue, currentValue) => previousValue + this.loss(currentValue[1], neural(w0, w1, currentValue[0])), 0);
-    let cost = sum / (2 * dataset.length)
+    let cost = sum / (dataset.length)
     return cost;
   },
   // Derivadas
