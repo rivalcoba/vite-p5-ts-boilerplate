@@ -34,25 +34,30 @@ let y = 100;
 // funcion de configuración
 function setup({
   createCanvas,
+  background,
   stroke,
   frameRate,
   windowWidth,
   windowHeight
 }: P5I) {
-  createCanvas(windowWidth-5, windowHeight-5);
+  // Creando el canvas
+  createCanvas(windowWidth - 5, windowHeight - 5);
+  // Estableciendo color de fondo
+  background(51);
   stroke(255);
   frameRate(30);
 }
 
 // Función de dibujado
-function draw({background, line, height, width} : P5I) {
-  background(0);
-  y = y - 1;
-  if (y < 0) {
-    y = height;
-  }
-  line(0, y, width, y);
+function draw() {
+    
 }
 
+// Event Listeners
+function mousePressed() {
+  let x = 0;
+}
+
+
 // Montando p5.js en el div
-p5i({ setup, draw }, document.getElementById('canvas') as HTMLDivElement);
+p5i({ setup, draw, mousePressed }, document.getElementById('canvas') as HTMLDivElement);
