@@ -8,7 +8,12 @@ export default {
   },
   // Cost Function
   cost(dataset: number[][], w0: number, w1: number) {
-    let sum = dataset.reduce((previousValue, currentValue) => previousValue + this.loss(currentValue[1], neural(w0, w1, currentValue[0])), 0);
+    let sum = dataset.reduce((previousValue, currentValue) => {
+      let x = currentValue[0];
+      let y = currentValue[1];
+      let loss = this.loss(y, neural(w0, w1, x));
+      return previousValue + loss;
+    }, 0)
     let cost = sum / (dataset.length)
     return cost;
   },
