@@ -1,0 +1,1 @@
+export default (w0: number, w1: number, x: number) => w0 + x * w1;
