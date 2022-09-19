@@ -1,35 +1,14 @@
+/// @ts-check
+/// <reference path="../node_modules/@types/p5/global.d.ts" />
+// import p5 from "p5";
+
 // Importando estilos
 import './style.css'
 // Importando P5
 import { p5i, P5I } from 'p5i';
-// Importando Json
-import dataset from './assets/cent2FahrDataset.json';
-// Importando funciones de regresion lineal
-import linearRegression from './helpers/linearRegUtils';
-// Imporntado interface
-// import { IOptimizationResults } from './helpers/appInterfaces';
+import { Vector } from 'p5';
 
-// Creando parametros
-const ALPHA = 0.0002;
-const SIGMA = 1E-10;
-let w0 = 0.0//getRandomArbitrary(-500,500); // 32
-console.log(`Initial: w0: ${w0}`);
-let w1 = 0.0//getRandomArbitrary(-500,500); // 1.8
-console.log(`Initial: w1: ${w1}`);
-
-// Optimizando
-let results = linearRegression.optimize(dataset, w0, w1, SIGMA, ALPHA)
-console.log('-----------------');
-console.log('🌟 RESULTS 🌟');
-console.log('-----------------');
-console.log(`Iterations = ${results.iterations}`);
-console.log(`Derivative = ${results.dJdWjMagnitude}`);
-console.log(`w0 = ${results.w0}`);
-console.log(`w1 = ${results.w1}`);
-console.log(`J = ${results.cost}`);
-console.log('-----------------');
-
-let y = 100;
+let data: Vector[] = [];
 
 // funcion de configuración
 function setup({
@@ -55,9 +34,14 @@ function draw() {
 
 // Event Listeners
 function mousePressed() {
-  let x = map(mouseX, 0, mouseY, 0);
+  let x = map(mouseX, 0, width, 0, 1);
+  let y = map(mouseY, 0, height, 1, 0);
+
+  let point = createVector(x, y);
+  data.push(point as Vector);
+
 }
 
 
 // Montando p5.js en el div
-const { map, mouseX, mouseY } = p5i({ setup, draw, mousePressed }, document.getElementById('canvas') as HTMLDivElement);
+const { map, mouseX, mouseY, height, width, createVector } = p5i({ setup, draw, mousePressed }, document.getElementById('canvas') as HTMLDivElement);
