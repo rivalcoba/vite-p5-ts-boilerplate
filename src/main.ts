@@ -1,11 +1,7 @@
-// @ts-check
-// <reference path="../node_modules/@types/p5/global.d.ts" />
-// import p5 from "p5";
-
 // Importando estilos
 import './style.css'
 // Importando P5
-import { p5i, P5I } from 'p5i';
+import { p5i, P5I,  } from 'p5i';
 import { Vector } from 'p5';
 
 let data: Vector[] = [];
